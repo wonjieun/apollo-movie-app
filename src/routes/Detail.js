@@ -6,19 +6,32 @@ const GET_MOVIE = gql`
     movie(id: $movieId) {
       id
       title
+      genres
+      summary
     }
   }
 `;
 
 export default function Detail() {
   const { id } = useParams();
-  const { data, loading } = useQuery(GET_MOVIE, {
+  const { data, loading, error } = useQuery(GET_MOVIE, {
     variables: {
       movieId: id,
     },
   });
   if (loading) {
-    return <div>💬 Loading ...</div>;
+    return <h1>💬 Loading ...</h1>;
   }
-  return <div>{data.movie.title}</div>;
+  if (error) {
+    return <h1>🚨 Error !</h1>;
+  }
+  return (
+    <main>
+      <h1>{data.movie.title}</h1>
+      {data.movie.genres.map((genre) => (
+        <span>{genre}</span>
+      ))}
+      <p>{data.movie.summary}</p>
+    </main>
+  );
 }
