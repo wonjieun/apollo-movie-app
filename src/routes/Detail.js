@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
+import { useParams } from 'react-router-dom';
 
 const GET_MOVIE = gql`
   query ($movieId: ID!) {
@@ -10,10 +11,14 @@ const GET_MOVIE = gql`
 `;
 
 export default function Detail() {
-  const { data } = useQuery(GET_MOVIE, {
+  const { id } = useParams();
+  const { data, loading } = useQuery(GET_MOVIE, {
     variables: {
-      movieId: '42445',
+      movieId: id,
     },
   });
-  return <div>Movie Detail</div>;
+  if (loading) {
+    return <div>💬 Loading ...</div>;
+  }
+  return <div>{data.movie.title}</div>;
 }
