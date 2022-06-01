@@ -28,8 +28,8 @@ export default function Detail() {
   return (
     <main>
       <h1>{data.movie.title}</h1>
-      {data.movie.genres.map((genre) => (
-        <span>{genre}</span>
+      {data.movie.genres.map((genre, index) => (
+        <span key={index}>{genre}</span>
       ))}
       <p>{data.movie.summary}</p>
     </main>
