@@ -26,6 +26,20 @@ export default function Detail() {
     },
   });
 
+  const toggleLiked = () => {
+    cache.writeFragment({
+      id: `Movie:${id}`,
+      fragment: gql`
+        fragment ToggleLiked on Movie {
+          isLiked
+        }
+      `,
+      data: {
+        isLiked: !data.movie.isLiked,
+      },
+    });
+  };
+
   if (loading) {
     return <h1>💬 Loading ...</h1>;
   }
@@ -39,7 +53,7 @@ export default function Detail() {
         <span key={index}>{genre}</span>
       ))}
       <p>{data.movie.summary}</p>
-      <button>{data.movie.isLiked ? '♥︎' : '♡'}</button>
+      <button onClick={toggleLiked}>{data.movie.isLiked ? '❤️' : '🤍'}</button>
     </main>
   );
 }
