@@ -8,17 +8,24 @@ const GET_MOVIE = gql`
       title
       genres
       summary
+      isLiked @client
     }
   }
 `;
 
 export default function Detail() {
   const { id } = useParams();
-  const { data, loading, error } = useQuery(GET_MOVIE, {
+  const {
+    data,
+    loading,
+    error,
+    client: { cache },
+  } = useQuery(GET_MOVIE, {
     variables: {
       movieId: id,
     },
   });
+
   if (loading) {
     return <h1>💬 Loading ...</h1>;
   }
@@ -32,6 +39,7 @@ export default function Detail() {
         <span key={index}>{genre}</span>
       ))}
       <p>{data.movie.summary}</p>
+      <button>{data.movie.isLiked ? '♥︎' : '♡'}</button>
     </main>
   );
 }
