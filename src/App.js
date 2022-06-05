@@ -1,8 +1,8 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Home from '../routes/Home';
-import Movies from '../routes/Movies';
-import Detail from '../routes/Detail';
+import Home from './routes/Home';
+import Movies from './routes/Movies';
+import Detail from './routes/Detail';
 
 function App() {
   return (
