@@ -19,12 +19,15 @@ export default function Movies() {
     return <div>🚨 Error !</div>;
   }
   return (
-    <ul>
-      {data.allMovies.map((movie) => (
-        <li key={movie.id}>
-          - <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
-        </li>
-      ))}
-    </ul>
+    <>
+      <h1>Movie</h1>
+      <ul>
+        {data.allMovies.map((movie) => (
+          <li key={movie.id}>
+            - <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }

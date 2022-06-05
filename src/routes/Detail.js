@@ -47,13 +47,13 @@ export default function Detail() {
     return <h1>🚨 Error !</h1>;
   }
   return (
-    <main>
+    <>
       <h1>{data.movie.title}</h1>
       {data.movie.genres.map((genre, index) => (
         <span key={index}>{genre}</span>
       ))}
       <p>{data.movie.summary}</p>
       <button onClick={toggleLiked}>{data.movie.isLiked ? '❤️' : '🤍'}</button>
-    </main>
+    </>
   );
 }
